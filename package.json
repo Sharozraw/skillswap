@@ -1,0 +1,10 @@
+{
+  "name": "skillswap",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently \"npm start --prefix frontend\" \"npm run server --prefix backend\""
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}
