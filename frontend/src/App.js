@@ -6,6 +6,8 @@ import Info from './pages/Info';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Dashboard from './pages/Dashboard';
+import UsersPage from './pages/UsersPage';
+import MessagesPage from './pages/MessagesPage';
 
 function App() {
   const [user, setUser] = useState(null); // Track logged-in user
@@ -26,6 +28,9 @@ function App() {
           <Route path="/login" element={!user ? <Login setUser={setUser} /> : <Navigate to="/dashboard" />} />
           <Route path="/signup" element={!user ? <Signup setUser={setUser} /> : <Navigate to="/dashboard" />} />
           <Route path="/dashboard" element={user ? <Dashboard /> : <Navigate to="/login" />} />
+          <Route path="/users" element={<UsersPage />} />
+          <Route path="/messages" element={<MessagesPage />} />
+          <Route path="/messages/:userId" element={<MessagesPage />} />
         </Routes>
       </div>
     </Router>
