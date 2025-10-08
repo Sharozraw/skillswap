@@ -42,12 +42,12 @@ const UsersPage = () => {
 
   const renderStars = (rating) => {
     return (
-      <div className="flex items-center gap-1">
+      <div className="flex items-center gap-0.5">
         {[1, 2, 3, 4, 5].map((star) => (
           <span
             key={star}
-            className={`text-lg ${
-              star <= Math.round(rating) ? 'text-yellow-400' : 'text-gray-300'
+            className={`${
+              star <= Math.round(rating) ? 'text-black' : 'text-gray-300'
             }`}
           >
             ★
@@ -61,15 +61,15 @@ const UsersPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-100 via-purple-50 to-pink-100">
+    <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <div className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500 shadow-lg">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="bg-black border-b border-gray-800">
+        <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
-            <h1 className="text-4xl font-bold text-white drop-shadow-md">Users</h1>
+            <h1 className="text-2xl font-bold text-white">Users</h1>
             <button
               onClick={() => navigate('/dashboard')}
-              className="bg-white/20 backdrop-blur-sm px-6 py-2 rounded-xl text-white font-semibold hover:bg-white/30 transition-all"
+              className="bg-white/10 border border-white/20 px-5 py-2 rounded-full text-white font-medium hover:bg-white/20 transition-all text-sm"
             >
               ← Back to Dashboard
             </button>
@@ -77,31 +77,30 @@ const UsersPage = () => {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="max-w-7xl mx-auto px-6 py-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* All Users List */}
-          <div className="lg:col-span-2 space-y-4">
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">All Users</h2>
+          <div className="lg:col-span-2 space-y-3">
+            <h2 className="text-xl font-bold text-gray-900 mb-4">All Users</h2>
             {users.length === 0 ? (
-              <div className="bg-white rounded-2xl shadow-lg p-16 text-center">
-                <div className="text-6xl mb-4">👥</div>
-                <p className="text-gray-600">No other users found</p>
+              <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-12 text-center">
+                <p className="text-gray-600 text-sm">No other users found</p>
               </div>
             ) : (
               users.map((user) => (
                 <div
                   key={user._id}
-                  className="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-all border border-purple-100"
+                  className="bg-white rounded-2xl shadow-sm border border-gray-200 p-5 hover:shadow-md transition-all"
                 >
                   <div className="flex items-start justify-between">
                     <div className="flex items-start gap-4 flex-1">
-                      <div className="w-16 h-16 bg-gradient-to-br from-indigo-400 to-purple-500 rounded-xl flex items-center justify-center text-white font-bold text-2xl shadow-lg">
+                      <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center text-white font-semibold flex-shrink-0">
                         {user.name.charAt(0).toUpperCase()}
                       </div>
-                      <div className="flex-1">
-                        <h3 className="text-xl font-bold text-gray-800">{user.name}</h3>
-                        <p className="text-sm text-gray-500 mb-2">{user.email}</p>
-                        <p className="text-gray-600 mb-3">{user.bio}</p>
+                      <div className="flex-1 min-w-0">
+                        <h3 className="text-lg font-bold text-gray-900">{user.name}</h3>
+                        <p className="text-xs text-gray-500 mb-2">{user.email}</p>
+                        <p className="text-gray-700 mb-3 text-sm">{user.bio}</p>
                         {renderStars(user.rating)}
                         {user.ratingsCount > 0 && (
                           <p className="text-xs text-gray-500 mt-1">
@@ -112,9 +111,9 @@ const UsersPage = () => {
                     </div>
                     <button
                       onClick={() => navigate(`/messages/${user._id}`)}
-                      className="bg-gradient-to-r from-indigo-500 to-purple-600 text-white px-6 py-2 rounded-xl font-semibold hover:from-indigo-600 hover:to-purple-700 transition-all shadow-md"
+                      className="bg-black text-white px-5 py-2 rounded-full font-semibold hover:bg-gray-800 transition-all text-sm ml-4"
                     >
-                      💬 Message
+                      Message
                     </button>
                   </div>
                 </div>
@@ -124,24 +123,24 @@ const UsersPage = () => {
 
           {/* Current User Profile */}
           <div className="lg:col-span-1">
-            <div className="bg-gradient-to-br from-white to-purple-50 rounded-2xl shadow-xl p-8 sticky top-6 border border-purple-100">
-              <h2 className="text-2xl font-bold text-gray-800 mb-6">Your Profile</h2>
+            <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 sticky top-6">
+              <h2 className="text-xl font-bold text-gray-900 mb-6">Your Profile</h2>
               
               {currentUser && (
-                <div className="space-y-4">
+                <div className="space-y-5">
                   <div className="flex justify-center">
-                    <div className="w-24 h-24 bg-gradient-to-br from-yellow-400 via-orange-500 to-pink-500 rounded-2xl flex items-center justify-center text-white font-bold text-4xl shadow-lg">
+                    <div className="w-20 h-20 bg-black rounded-full flex items-center justify-center text-white font-bold text-2xl">
                       {currentUser.name.charAt(0).toUpperCase()}
                     </div>
                   </div>
 
                   <div className="text-center">
-                    <h3 className="text-2xl font-bold text-gray-800">{currentUser.name}</h3>
+                    <h3 className="text-xl font-bold text-gray-900">{currentUser.name}</h3>
                     <p className="text-sm text-gray-500">{currentUser.email}</p>
                   </div>
 
-                  <div className="bg-purple-50 rounded-xl p-4">
-                    <p className="text-xs text-purple-600 font-semibold mb-1">Your Rating</p>
+                  <div className="bg-gray-50 rounded-xl p-4 border border-gray-200">
+                    <p className="text-xs text-gray-600 font-semibold mb-2">Your Rating</p>
                     <div className="flex justify-center">
                       {renderStars(currentUser.rating)}
                     </div>
@@ -158,7 +157,7 @@ const UsersPage = () => {
                       {!editingBio && (
                         <button
                           onClick={() => setEditingBio(true)}
-                          className="text-sm text-purple-600 hover:text-purple-800 font-semibold"
+                          className="text-sm text-black hover:text-gray-700 font-semibold underline"
                         >
                           Edit
                         </button>
@@ -169,7 +168,7 @@ const UsersPage = () => {
                         <textarea
                           value={bioText}
                           onChange={(e) => setBioText(e.target.value)}
-                          className="w-full px-4 py-3 border-2 border-purple-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all resize-none"
+                          className="w-full px-4 py-2.5 border border-gray-300 rounded-xl focus:ring-2 focus:ring-black focus:border-transparent transition-all resize-none text-sm"
                           rows="4"
                           maxLength="500"
                         />
@@ -179,7 +178,7 @@ const UsersPage = () => {
                         <div className="flex gap-2">
                           <button
                             onClick={handleUpdateBio}
-                            className="flex-1 bg-gradient-to-r from-green-500 to-emerald-600 text-white py-2 rounded-xl font-semibold hover:from-green-600 hover:to-emerald-700 transition-all"
+                            className="flex-1 bg-black text-white py-2 rounded-xl font-semibold hover:bg-gray-800 transition-all text-sm"
                           >
                             Save
                           </button>
@@ -188,15 +187,15 @@ const UsersPage = () => {
                               setEditingBio(false);
                               setBioText(currentUser.bio);
                             }}
-                            className="flex-1 bg-gray-300 text-gray-700 py-2 rounded-xl font-semibold hover:bg-gray-400 transition-all"
+                            className="flex-1 bg-gray-200 text-gray-700 py-2 rounded-xl font-semibold hover:bg-gray-300 transition-all text-sm"
                           >
                             Cancel
                           </button>
                         </div>
                       </div>
                     ) : (
-                      <div className="bg-white border-2 border-purple-200 rounded-xl p-4">
-                        <p className="text-gray-700">{currentUser.bio}</p>
+                      <div className="bg-gray-50 border border-gray-200 rounded-xl p-4">
+                        <p className="text-gray-700 text-sm">{currentUser.bio}</p>
                       </div>
                     )}
                   </div>

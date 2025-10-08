@@ -1,92 +1,91 @@
+import { Link } from 'react-router-dom';
+
 const Info = () => (
-  <div className="min-h-screen bg-gradient-to-br from-indigo-100 via-purple-50 to-pink-100">
+  <div className="min-h-screen bg-gray-50">
     {/* Hero Section */}
-    <div className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500 text-white relative overflow-hidden">
-      <div className="absolute top-0 right-0 w-96 h-96 bg-yellow-400 rounded-full opacity-10 blur-3xl"></div>
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-pink-400 rounded-full opacity-10 blur-3xl"></div>
-      
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 relative z-10">
+    <div className="bg-gray-100 border-b border-gray-300 relative">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="text-center">
-          <div className="inline-block mb-6 animate-bounce">
-            <div className="text-7xl">🎓</div>
+          <div className="inline-block mb-4">
+            <div className="text-5xl">🎓</div>
           </div>
-          <h1 className="text-6xl font-extrabold mb-6 drop-shadow-lg">About <span className="text-yellow-300">SkillSwap</span></h1>
-          <p className="text-2xl text-purple-100 max-w-3xl mx-auto">
-            Empowering students to collaborate, learn, and grow together 🚀
+          <h1 className="text-4xl font-semibold text-gray-800 mb-4">About <span className="text-gray-600">SkillSwap</span></h1>
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            Empowering students to collaborate, learn, and grow together
           </p>
         </div>
       </div>
     </div>
 
     {/* Main Content */}
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       {/* Mission Section */}
-      <div className="bg-gradient-to-br from-white to-purple-50 rounded-3xl shadow-2xl p-16 mb-16 border-2 border-purple-100">
-        <div className="max-w-3xl mx-auto text-center">
-          <div className="text-7xl mb-8">🎯</div>
-          <h2 className="text-4xl font-extrabold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-8">
+      <div className="bg-white rounded-xl shadow-md p-12 mb-12 border border-gray-200">
+        <div className="max-w-2xl mx-auto text-center">
+          <div className="text-5xl mb-6">🎯</div>
+          <h2 className="text-3xl font-semibold text-gray-800 mb-6">
             Our Mission
           </h2>
-          <p className="text-xl text-gray-700 leading-relaxed">
+          <p className="text-base text-gray-600 leading-relaxed">
             SkillSwap is a platform designed for students to exchange skills and help each other with various tasks. 
             We believe in the power of collaborative learning and mutual support within the student community. 
             Whether you need help with assignments, projects, or learning new skills, SkillSwap connects you with 
-            peers who can assist you. 🤝
+            peers who can assist you.
           </p>
         </div>
       </div>
 
       {/* Features Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-        <div className="bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all transform hover:scale-105 text-white">
-          <div className="text-5xl mb-4">🤝</div>
-          <h3 className="text-2xl font-bold mb-4">Skill Exchange</h3>
-          <p className="text-indigo-100">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        <div className="bg-gray-50 rounded-lg shadow-sm p-6 hover:bg-gray-100 transition-all">
+          <div className="text-4xl mb-3">🤝</div>
+          <h3 className="text-xl font-semibold text-gray-800 mb-3">Skill Exchange</h3>
+          <p className="text-sm text-gray-600">
             Trade skills with fellow students. Help someone with math, get help with coding. 
             Everyone has something valuable to offer.
           </p>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-500 to-pink-600 rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all transform hover:scale-105 text-white">
-          <div className="text-5xl mb-4">💰</div>
-          <h3 className="text-2xl font-bold mb-4">Flexible Payment</h3>
-          <p className="text-purple-100">
+        <div className="bg-gray-50 rounded-lg shadow-sm p-6 hover:bg-gray-100 transition-all">
+          <div className="text-4xl mb-3">💰</div>
+          <h3 className="text-xl font-semibold text-gray-800 mb-3">Flexible Payment</h3>
+          <p className="text-sm text-gray-600">
             Choose how you want to be compensated - cash, skill exchange, or other arrangements. 
             You're in control.
           </p>
         </div>
 
-        <div className="bg-gradient-to-br from-pink-500 to-orange-500 rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all transform hover:scale-105 text-white">
-          <div className="text-5xl mb-4">🔒</div>
-          <h3 className="text-2xl font-bold mb-4">Safe & Secure</h3>
-          <p className="text-pink-100">
+        <div className="bg-gray-50 rounded-lg shadow-sm p-6 hover:bg-gray-100 transition-all">
+          <div className="text-4xl mb-3">🔒</div>
+          <h3 className="text-xl font-semibold text-gray-800 mb-3">Safe & Secure</h3>
+          <p className="text-sm text-gray-600">
             Built with student safety in mind. Connect only with verified members of your 
             campus community.
           </p>
         </div>
 
-        <div className="bg-gradient-to-br from-yellow-400 to-orange-500 rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all transform hover:scale-105 text-white">
-          <div className="text-5xl mb-4">⚡</div>
-          <h3 className="text-2xl font-bold mb-4">Quick & Easy</h3>
-          <p className="text-yellow-100">
+        <div className="bg-gray-50 rounded-lg shadow-sm p-6 hover:bg-gray-100 transition-all">
+          <div className="text-4xl mb-3">⚡</div>
+          <h3 className="text-xl font-semibold text-gray-800 mb-3">Quick & Easy</h3>
+          <p className="text-sm text-gray-600">
             Post a job in seconds and get responses from interested students. No lengthy 
             processes or complicated steps.
           </p>
         </div>
 
-        <div className="bg-gradient-to-br from-green-400 to-teal-500 rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all transform hover:scale-105 text-white">
-          <div className="text-5xl mb-4">🌟</div>
-          <h3 className="text-2xl font-bold mb-4">Build Your Network</h3>
-          <p className="text-green-100">
+        <div className="bg-gray-50 rounded-lg shadow-sm p-6 hover:bg-gray-100 transition-all">
+          <div className="text-4xl mb-3">🌟</div>
+          <h3 className="text-xl font-semibold text-gray-800 mb-3">Build Your Network</h3>
+          <p className="text-sm text-gray-600">
             Connect with talented peers across different majors and skill sets. 
             Expand your campus network organically.
           </p>
         </div>
 
-        <div className="bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all transform hover:scale-105 text-white">
-          <div className="text-5xl mb-4">📚</div>
-          <h3 className="text-2xl font-bold mb-4">Learn Together</h3>
-          <p className="text-blue-100">
+        <div className="bg-gray-50 rounded-lg shadow-sm p-6 hover:bg-gray-100 transition-all">
+          <div className="text-4xl mb-3">📚</div>
+          <h3 className="text-xl font-semibold text-gray-800 mb-3">Learn Together</h3>
+          <p className="text-sm text-gray-600">
             Collaborative learning leads to better outcomes. Share knowledge and grow 
             together with your peers.
           </p>
@@ -94,38 +93,35 @@ const Info = () => (
       </div>
 
       {/* How It Works */}
-      <div className="bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500 rounded-3xl shadow-2xl p-16 mb-16 text-white relative overflow-hidden">
-        <div className="absolute top-10 right-10 w-40 h-40 bg-yellow-400 rounded-full opacity-20 blur-2xl"></div>
-        <div className="absolute bottom-10 left-10 w-48 h-48 bg-pink-400 rounded-full opacity-20 blur-2xl"></div>
-        
-        <h2 className="text-4xl font-extrabold text-center mb-16 relative z-10">How It Works ✨</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 relative z-10">
+      <div className="bg-gray-100 rounded-xl shadow-md p-12 mb-12">
+        <h2 className="text-3xl font-semibold text-gray-800 text-center mb-12">How It Works</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="text-center">
-            <div className="w-20 h-20 bg-white text-indigo-600 rounded-2xl flex items-center justify-center text-3xl font-extrabold mx-auto mb-6 shadow-2xl">
+            <div className="w-16 h-16 bg-gray-800 text-white rounded-lg flex items-center justify-center text-2xl font-semibold mx-auto mb-4 shadow-sm">
               1
             </div>
-            <h3 className="text-2xl font-bold mb-4">Sign Up 🚀</h3>
-            <p className="text-purple-100 text-lg">
+            <h3 className="text-xl font-semibold text-gray-800 mb-3">Sign Up</h3>
+            <p className="text-sm text-gray-600">
               Create your free account and set up your profile with your skills and interests
             </p>
           </div>
 
           <div className="text-center">
-            <div className="w-20 h-20 bg-white text-purple-600 rounded-2xl flex items-center justify-center text-3xl font-extrabold mx-auto mb-6 shadow-2xl">
+            <div className="w-16 h-16 bg-gray-800 text-white rounded-lg flex items-center justify-center text-2xl font-semibold mx-auto mb-4 shadow-sm">
               2
             </div>
-            <h3 className="text-2xl font-bold mb-4">Post or Browse 📝</h3>
-            <p className="text-purple-100 text-lg">
+            <h3 className="text-xl font-semibold text-gray-800 mb-3">Post or Browse</h3>
+            <p className="text-sm text-gray-600">
               Post jobs you need help with or browse available jobs you can help with
             </p>
           </div>
 
           <div className="text-center">
-            <div className="w-20 h-20 bg-white text-pink-600 rounded-2xl flex items-center justify-center text-3xl font-extrabold mx-auto mb-6 shadow-2xl">
+            <div className="w-16 h-16 bg-gray-800 text-white rounded-lg flex items-center justify-center text-2xl font-semibold mx-auto mb-4 shadow-sm">
               3
             </div>
-            <h3 className="text-2xl font-bold mb-4">Connect & Complete 🤝</h3>
-            <p className="text-purple-100 text-lg">
+            <h3 className="text-xl font-semibold text-gray-800 mb-3">Connect & Complete</h3>
+            <p className="text-sm text-gray-600">
               Accept jobs, connect with students, and complete tasks together
             </p>
           </div>
@@ -133,48 +129,48 @@ const Info = () => (
       </div>
 
       {/* Stats Section */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
-        <div className="bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl shadow-xl p-8 text-center text-white transform hover:scale-110 transition-all">
-          <div className="text-4xl font-extrabold mb-2">500+</div>
-          <div className="text-indigo-100 font-medium">Active Students</div>
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+        <div className="bg-gray-50 rounded-lg shadow-sm p-6 text-center">
+          <div className="text-3xl font-semibold text-gray-800 mb-1">500+</div>
+          <div className="text-sm text-gray-600 font-medium">Active Students</div>
         </div>
-        <div className="bg-gradient-to-br from-purple-500 to-pink-600 rounded-2xl shadow-xl p-8 text-center text-white transform hover:scale-110 transition-all">
-          <div className="text-4xl font-extrabold mb-2">1000+</div>
-          <div className="text-purple-100 font-medium">Tasks Completed</div>
+        <div className="bg-gray-50 rounded-lg shadow-sm p-6 text-center">
+          <div className="text-3xl font-semibold text-gray-800 mb-1">1000+</div>
+          <div className="text-sm text-gray-600 font-medium">Tasks Completed</div>
         </div>
-        <div className="bg-gradient-to-br from-pink-500 to-orange-500 rounded-2xl shadow-xl p-8 text-center text-white transform hover:scale-110 transition-all">
-          <div className="text-4xl font-extrabold mb-2">50+</div>
-          <div className="text-pink-100 font-medium">Skill Categories</div>
+        <div className="bg-gray-50 rounded-lg shadow-sm p-6 text-center">
+          <div className="text-3xl font-semibold text-gray-800 mb-1">50+</div>
+          <div className="text-sm text-gray-600 font-medium">Skill Categories</div>
         </div>
-        <div className="bg-gradient-to-br from-yellow-400 to-orange-500 rounded-2xl shadow-xl p-8 text-center text-white transform hover:scale-110 transition-all">
-          <div className="text-4xl font-extrabold mb-2">4.8★</div>
-          <div className="text-yellow-100 font-medium">Average Rating</div>
+        <div className="bg-gray-50 rounded-lg shadow-sm p-6 text-center">
+          <div className="text-3xl font-semibold text-gray-800 mb-1">4.8★</div>
+          <div className="text-sm text-gray-600 font-medium">Average Rating</div>
         </div>
       </div>
 
       {/* CTA Section */}
-      <div className="bg-gradient-to-br from-white to-purple-50 rounded-3xl shadow-2xl p-16 text-center border-2 border-purple-100">
-        <div className="text-6xl mb-6">🎉</div>
-        <h2 className="text-4xl font-extrabold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-6">
+      <div className="bg-white rounded-xl shadow-md p-12 text-center border border-gray-200">
+        <div className="text-5xl mb-4">🎉</div>
+        <h2 className="text-3xl font-semibold text-gray-800 mb-4">
           Ready to Get Started?
         </h2>
-        <p className="text-xl text-gray-700 mb-10 max-w-2xl mx-auto">
+        <p className="text-base text-gray-600 mb-8 max-w-xl mx-auto">
           Join thousands of students who are already helping each other succeed. 
-          Your next opportunity is just a click away! ✨
+          Your next opportunity is just a click away!
         </p>
-        <div className="flex gap-6 justify-center">
-          <a 
-            href="/signup" 
-            className="bg-gradient-to-r from-indigo-500 via-purple-600 to-pink-500 text-white px-12 py-5 rounded-xl font-bold hover:from-indigo-600 hover:via-purple-700 hover:to-pink-600 transition-all shadow-xl hover:shadow-2xl transform hover:scale-110 text-lg"
+        <div className="flex gap-4 justify-center">
+          <Link 
+            to="/signup" 
+            className="bg-gray-800 text-white px-8 py-3 rounded-lg font-medium hover:bg-gray-900 transition-all shadow-sm text-base"
           >
-            Sign Up Now 🚀
-          </a>
-          <a 
-            href="/" 
-            className="bg-gradient-to-r from-purple-100 to-pink-100 text-purple-700 px-12 py-5 rounded-xl font-bold hover:from-purple-200 hover:to-pink-200 transition-all shadow-lg text-lg border-2 border-purple-300"
+            Sign Up Now
+          </Link>
+          <Link 
+            to="/" 
+            className="bg-gray-300 text-gray-800 px-8 py-3 rounded-lg font-medium hover:bg-gray-400 transition-all shadow-sm text-base border border-gray-400"
           >
-            Browse Jobs 📋
-          </a>
+            Browse Jobs
+          </Link>
         </div>
       </div>
     </div>

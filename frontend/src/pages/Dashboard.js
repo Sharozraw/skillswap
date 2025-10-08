@@ -115,13 +115,8 @@ const Dashboard = () => {
     try {
       await createJob(newJob);
       setNewJob({ title: '', description: '', payment: '' });
-      
-      // Refresh all job lists to show the new job
       await fetchData();
-      
-      // Switch to posted tab to show the newly created job
       setActiveTab('posted');
-      
       alert('Job posted successfully!');
     } catch (error) {
       console.error('Error creating job:', error);
@@ -132,10 +127,8 @@ const Dashboard = () => {
   const handleApply = async (jobId, reason) => {
     try {
       await applyForJob(jobId, reason);
-      
       const jobsRes = await getJobs();
       setJobs(jobsRes.data);
-      
       alert('Application submitted successfully!');
     } catch (error) {
       console.error('Error applying for job:', error);
@@ -160,7 +153,6 @@ const Dashboard = () => {
       
       alert('Job marked as completed! Please rate the user who completed it.');
       
-      // Switch to jobs to rate tab if there are jobs to rate
       if (toRateRes.data.length > 0) {
         setActiveTab('to-rate');
       }
@@ -239,32 +231,38 @@ const Dashboard = () => {
   const avatarLetter = user.name && user.name.length > 0 ? user.name.charAt(0).toUpperCase() : 'U';
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-100 via-purple-50 to-pink-100">
+    <div className="min-h-screen bg-gray-50">
       {/* Header Section */}
-      <div className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500 shadow-lg">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="bg-black border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-4xl font-bold text-white drop-shadow-md">Dashboard</h1>
-              <p className="text-indigo-100 mt-2 text-lg">Welcome back, {user.name}! 👋</p>
+              <h1 className="text-2xl font-bold text-white">Dashboard</h1>
+              <p className="text-gray-400 text-sm mt-1">Welcome back, {user.name}</p>
             </div>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-3">
               {/* Users Button */}
               <button
                 onClick={() => navigate('/users')}
-                className="relative bg-white/10 backdrop-blur-sm rounded-xl p-3 border border-white/20 hover:bg-white/20 transition-all"
+                className="relative bg-white border border-gray-300 rounded-full p-2 hover:bg-gray-100 transition-all"
+                title="Users"
               >
-                <span className="text-2xl">👥</span>
+                <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                </svg>
               </button>
 
               {/* Messages Button */}
               <button
                 onClick={() => navigate('/messages')}
-                className="relative bg-white/10 backdrop-blur-sm rounded-xl p-3 border border-white/20 hover:bg-white/20 transition-all"
+                className="relative bg-white border border-gray-300 rounded-full p-2 hover:bg-gray-100 transition-all"
+                title="Messages"
               >
-                <span className="text-2xl">💬</span>
+                <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+                </svg>
                 {unreadMessages > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                  <span className="absolute -top-1 -right-1 bg-black text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
                     {unreadMessages}
                   </span>
                 )}
@@ -274,11 +272,14 @@ const Dashboard = () => {
               <div className="relative">
                 <button
                   onClick={() => setShowNotifications(!showNotifications)}
-                  className="relative bg-white/10 backdrop-blur-sm rounded-xl p-3 border border-white/20 hover:bg-white/20 transition-all"
+                  className="relative bg-white border border-gray-300 rounded-full p-2 hover:bg-gray-100 transition-all"
+                  title="Notifications"
                 >
-                  <span className="text-2xl">🔔</span>
+                  <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                  </svg>
                   {unreadCount > 0 && (
-                    <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                    <span className="absolute -top-1 -right-1 bg-black text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
                       {unreadCount}
                     </span>
                   )}
@@ -286,13 +287,13 @@ const Dashboard = () => {
 
                 {/* Notification Dropdown */}
                 {showNotifications && (
-                  <div className="absolute right-0 mt-2 w-96 bg-white rounded-xl shadow-2xl border border-purple-100 z-50 max-h-96 overflow-y-auto">
+                  <div className="absolute right-0 mt-2 w-96 bg-white rounded-2xl shadow-2xl border border-gray-200 z-50 max-h-96 overflow-y-auto">
                     <div className="p-4 border-b border-gray-200 flex items-center justify-between sticky top-0 bg-white">
-                      <h3 className="font-bold text-gray-800">Notifications</h3>
+                      <h3 className="font-bold text-gray-900">Notifications</h3>
                       {unreadCount > 0 && (
                         <button
                           onClick={handleMarkAllAsRead}
-                          className="text-xs text-purple-600 hover:text-purple-800 font-semibold"
+                          className="text-xs text-black hover:text-gray-700 font-semibold underline"
                         >
                           Mark all as read
                         </button>
@@ -301,24 +302,20 @@ const Dashboard = () => {
                     <div className="divide-y divide-gray-100">
                       {notifications.length === 0 ? (
                         <div className="p-8 text-center text-gray-500">
-                          <span className="text-4xl block mb-2">📭</span>
-                          No notifications yet
+                          <p className="text-sm">No notifications yet</p>
                         </div>
                       ) : (
                         notifications.map((notif) => (
                           <div
                             key={notif._id}
-                            className={`p-4 hover:bg-purple-50 transition-all cursor-pointer ${
-                              !notif.isRead ? 'bg-purple-50/50' : ''
+                            className={`p-4 hover:bg-gray-50 transition-all cursor-pointer ${
+                              !notif.isRead ? 'bg-gray-50' : ''
                             }`}
                             onClick={() => !notif.isRead && handleMarkAsRead(notif._id)}
                           >
                             <div className="flex items-start gap-3">
-                              <span className="text-2xl">
-                                {notif.type === 'job_completed' ? '🎉' : '📢'}
-                              </span>
                               <div className="flex-1">
-                                <p className="text-sm text-gray-800">{notif.message}</p>
+                                <p className="text-sm text-gray-900">{notif.message}</p>
                                 <p className="text-xs text-gray-500 mt-1">
                                   {new Date(notif.createdAt).toLocaleDateString('en-US', {
                                     month: 'short',
@@ -329,7 +326,7 @@ const Dashboard = () => {
                                 </p>
                               </div>
                               {!notif.isRead && (
-                                <div className="w-2 h-2 bg-purple-600 rounded-full"></div>
+                                <div className="w-2 h-2 bg-black rounded-full mt-1"></div>
                               )}
                             </div>
                           </div>
@@ -341,12 +338,12 @@ const Dashboard = () => {
               </div>
 
               {/* User Profile */}
-              <div className="flex items-center gap-4 bg-white/10 backdrop-blur-sm rounded-2xl p-4 border border-white/20">
+              <div className="flex items-center gap-3 bg-white border border-gray-300 rounded-full px-4 py-2">
                 <div className="text-right">
-                  <p className="text-xs text-indigo-200 font-medium uppercase tracking-wide">Account</p>
-                  <p className="font-semibold text-white">{user.email}</p>
+                  <p className="text-xs text-gray-500 font-medium">Account</p>
+                  <p className="font-semibold text-gray-900 text-sm">{user.email}</p>
                 </div>
-                <div className="w-14 h-14 bg-gradient-to-br from-yellow-400 via-orange-500 to-pink-500 rounded-xl flex items-center justify-center text-white font-bold text-2xl shadow-lg ring-4 ring-white/30">
+                <div className="w-10 h-10 bg-black rounded-full flex items-center justify-center text-white font-bold text-sm">
                   {avatarLetter}
                 </div>
               </div>
@@ -355,95 +352,89 @@ const Dashboard = () => {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="max-w-7xl mx-auto px-6 py-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Main Content - Jobs Section */}
-          <div className="lg:col-span-2 space-y-6">
+          <div className="lg:col-span-2 space-y-4">
             {/* Tab Navigation */}
-            <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl p-2 flex gap-2 border border-purple-100 overflow-x-auto">
+            <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-1 flex gap-1 overflow-x-auto">
               <button
                 onClick={() => setActiveTab('available')}
-                className={`flex-1 py-4 px-4 rounded-xl font-semibold transition-all whitespace-nowrap ${
+                className={`flex-1 py-3 px-4 rounded-xl font-medium transition-all whitespace-nowrap text-sm ${
                   activeTab === 'available'
-                    ? 'bg-gradient-to-r from-indigo-500 to-purple-600 text-white shadow-lg scale-105'
-                    : 'text-gray-700 hover:bg-purple-50'
+                    ? 'bg-black text-white'
+                    : 'text-gray-700 hover:bg-gray-50'
                 }`}
               >
                 <div className="flex items-center justify-center gap-2">
-                  <span>📋</span>
                   <span>Available</span>
-                  <span className="bg-white/20 px-2 py-1 rounded-full text-xs">{jobs.length}</span>
+                  <span className={`${activeTab === 'available' ? 'bg-white/20' : 'bg-gray-100'} px-2 py-0.5 rounded-full text-xs`}>{jobs.length}</span>
                 </div>
               </button>
               <button
                 onClick={() => setActiveTab('posted')}
-                className={`flex-1 py-4 px-4 rounded-xl font-semibold transition-all whitespace-nowrap ${
+                className={`flex-1 py-3 px-4 rounded-xl font-medium transition-all whitespace-nowrap text-sm ${
                   activeTab === 'posted'
-                    ? 'bg-gradient-to-r from-purple-500 to-pink-600 text-white shadow-lg scale-105'
-                    : 'text-gray-700 hover:bg-purple-50'
+                    ? 'bg-black text-white'
+                    : 'text-gray-700 hover:bg-gray-50'
                 }`}
               >
                 <div className="flex items-center justify-center gap-2">
-                  <span>📝</span>
                   <span>Posted</span>
-                  <span className="bg-white/20 px-2 py-1 rounded-full text-xs">{postedJobs.length}</span>
+                  <span className={`${activeTab === 'posted' ? 'bg-white/20' : 'bg-gray-100'} px-2 py-0.5 rounded-full text-xs`}>{postedJobs.length}</span>
                 </div>
               </button>
               <button
                 onClick={() => setActiveTab('accepted')}
-                className={`flex-1 py-4 px-4 rounded-xl font-semibold transition-all whitespace-nowrap ${
+                className={`flex-1 py-3 px-4 rounded-xl font-medium transition-all whitespace-nowrap text-sm ${
                   activeTab === 'accepted'
-                    ? 'bg-gradient-to-r from-pink-500 to-orange-500 text-white shadow-lg scale-105'
-                    : 'text-gray-700 hover:bg-purple-50'
+                    ? 'bg-black text-white'
+                    : 'text-gray-700 hover:bg-gray-50'
                 }`}
               >
                 <div className="flex items-center justify-center gap-2">
-                  <span>✅</span>
                   <span>Accepted</span>
-                  <span className="bg-white/20 px-2 py-1 rounded-full text-xs">{acceptedJobs.length}</span>
+                  <span className={`${activeTab === 'accepted' ? 'bg-white/20' : 'bg-gray-100'} px-2 py-0.5 rounded-full text-xs`}>{acceptedJobs.length}</span>
                 </div>
               </button>
               <button
                 onClick={() => setActiveTab('completed')}
-                className={`flex-1 py-4 px-4 rounded-xl font-semibold transition-all whitespace-nowrap ${
+                className={`flex-1 py-3 px-4 rounded-xl font-medium transition-all whitespace-nowrap text-sm ${
                   activeTab === 'completed'
-                    ? 'bg-gradient-to-r from-green-500 to-emerald-600 text-white shadow-lg scale-105'
-                    : 'text-gray-700 hover:bg-purple-50'
+                    ? 'bg-black text-white'
+                    : 'text-gray-700 hover:bg-gray-50'
                 }`}
               >
                 <div className="flex items-center justify-center gap-2">
-                  <span>🎉</span>
                   <span>Completed</span>
-                  <span className="bg-white/20 px-2 py-1 rounded-full text-xs">{completedJobs.length}</span>
+                  <span className={`${activeTab === 'completed' ? 'bg-white/20' : 'bg-gray-100'} px-2 py-0.5 rounded-full text-xs`}>{completedJobs.length}</span>
                 </div>
               </button>
               {jobsToRate.length > 0 && (
                 <button
                   onClick={() => setActiveTab('to-rate')}
-                  className={`flex-1 py-4 px-4 rounded-xl font-semibold transition-all whitespace-nowrap ${
+                  className={`flex-1 py-3 px-4 rounded-xl font-medium transition-all whitespace-nowrap text-sm ${
                     activeTab === 'to-rate'
-                      ? 'bg-gradient-to-r from-yellow-400 to-orange-500 text-white shadow-lg scale-105'
-                      : 'text-gray-700 hover:bg-purple-50'
+                      ? 'bg-black text-white'
+                      : 'text-gray-700 hover:bg-gray-50'
                   }`}
                 >
                   <div className="flex items-center justify-center gap-2">
-                    <span>⭐</span>
                     <span>To Rate</span>
-                    <span className="bg-white/20 px-2 py-1 rounded-full text-xs">{jobsToRate.length}</span>
+                    <span className={`${activeTab === 'to-rate' ? 'bg-white/20' : 'bg-gray-100'} px-2 py-0.5 rounded-full text-xs`}>{jobsToRate.length}</span>
                   </div>
                 </button>
               )}
             </div>
 
             {/* Jobs Display */}
-            <div className="space-y-4">
+            <div className="space-y-3">
               {activeTab === 'available' && (
                 <>
                   {jobs.length === 0 ? (
-                    <div className="bg-gradient-to-br from-white to-indigo-50 rounded-2xl shadow-lg p-16 text-center border border-indigo-100">
-                      <div className="text-6xl mb-6">📋</div>
-                      <h3 className="text-2xl font-bold text-gray-800 mb-2">No Available Jobs</h3>
-                      <p className="text-gray-600">Check back later for new opportunities!</p>
+                    <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-12 text-center">
+                      <h3 className="text-lg font-bold text-gray-900 mb-1">No Available Jobs</h3>
+                      <p className="text-gray-600 text-sm">Check back later for new opportunities</p>
                     </div>
                   ) : (
                     jobs.map((job) => (
@@ -460,10 +451,9 @@ const Dashboard = () => {
               {activeTab === 'posted' && (
                 <>
                   {postedJobs.length === 0 ? (
-                    <div className="bg-gradient-to-br from-white to-purple-50 rounded-2xl shadow-lg p-16 text-center border border-purple-100">
-                      <div className="text-6xl mb-6">📝</div>
-                      <h3 className="text-2xl font-bold text-gray-800 mb-2">No Posted Jobs</h3>
-                      <p className="text-gray-600">Post your first job using the form on the right!</p>
+                    <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-12 text-center">
+                      <h3 className="text-lg font-bold text-gray-900 mb-1">No Posted Jobs</h3>
+                      <p className="text-gray-600 text-sm">Post your first job using the form</p>
                     </div>
                   ) : (
                     postedJobs.map((job) => (
@@ -483,10 +473,9 @@ const Dashboard = () => {
               {activeTab === 'accepted' && (
                 <>
                   {acceptedJobs.length === 0 ? (
-                    <div className="bg-gradient-to-br from-white to-pink-50 rounded-2xl shadow-lg p-16 text-center border border-pink-100">
-                      <div className="text-6xl mb-6">✅</div>
-                      <h3 className="text-2xl font-bold text-gray-800 mb-2">No Accepted Jobs</h3>
-                      <p className="text-gray-600">Start applying to jobs to see them here!</p>
+                    <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-12 text-center">
+                      <h3 className="text-lg font-bold text-gray-900 mb-1">No Accepted Jobs</h3>
+                      <p className="text-gray-600 text-sm">Start applying to jobs to see them here</p>
                     </div>
                   ) : (
                     acceptedJobs.map((job) => (
@@ -502,10 +491,9 @@ const Dashboard = () => {
               {activeTab === 'completed' && (
                 <>
                   {completedJobs.length === 0 ? (
-                    <div className="bg-gradient-to-br from-white to-green-50 rounded-2xl shadow-lg p-16 text-center border border-green-100">
-                      <div className="text-6xl mb-6">🎉</div>
-                      <h3 className="text-2xl font-bold text-gray-800 mb-2">No Completed Jobs</h3>
-                      <p className="text-gray-600">Completed jobs will appear here!</p>
+                    <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-12 text-center">
+                      <h3 className="text-lg font-bold text-gray-900 mb-1">No Completed Jobs</h3>
+                      <p className="text-gray-600 text-sm">Completed jobs will appear here</p>
                     </div>
                   ) : (
                     completedJobs.map((job) => (
@@ -521,19 +509,18 @@ const Dashboard = () => {
               {activeTab === 'to-rate' && (
                 <>
                   {jobsToRate.length === 0 ? (
-                    <div className="bg-gradient-to-br from-white to-yellow-50 rounded-2xl shadow-lg p-16 text-center border border-yellow-100">
-                      <div className="text-6xl mb-6">⭐</div>
-                      <h3 className="text-2xl font-bold text-gray-800 mb-2">No Jobs to Rate</h3>
-                      <p className="text-gray-600">Jobs waiting for your rating will appear here!</p>
+                    <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-12 text-center">
+                      <h3 className="text-lg font-bold text-gray-900 mb-1">No Jobs to Rate</h3>
+                      <p className="text-gray-600 text-sm">Jobs waiting for your rating will appear here</p>
                     </div>
                   ) : (
                     jobsToRate.map((job) => (
-                      <div key={job._id} className="bg-white rounded-2xl shadow-lg p-6 border border-yellow-200">
+                      <div key={job._id} className="bg-white rounded-2xl shadow-sm border border-gray-200 p-5">
                         <div className="flex items-start justify-between mb-4">
                           <div className="flex-1">
-                            <h3 className="text-xl font-bold text-gray-800 mb-2">{job.title}</h3>
-                            <p className="text-gray-600 mb-4">Completed by <span className="font-semibold">{job.acceptedBy.name}</span></p>
-                            <p className="text-sm text-gray-500">
+                            <h3 className="text-lg font-bold text-gray-900 mb-1">{job.title}</h3>
+                            <p className="text-gray-600 text-sm mb-2">Completed by <span className="font-semibold">{job.acceptedBy.name}</span></p>
+                            <p className="text-xs text-gray-500">
                               Completed on {new Date(job.completedAt).toLocaleDateString('en-US', {
                                 year: 'numeric',
                                 month: 'long',
@@ -547,9 +534,9 @@ const Dashboard = () => {
                             setSelectedJobForRating(job);
                             setShowRatingModal(true);
                           }}
-                          className="w-full bg-gradient-to-r from-yellow-400 to-orange-500 text-white py-3 rounded-xl font-bold hover:from-yellow-500 hover:to-orange-600 transition-all shadow-md"
+                          className="w-full bg-black text-white py-3 rounded-xl font-semibold hover:bg-gray-800 transition-all"
                         >
-                          ⭐ Rate User
+                          Rate User
                         </button>
                       </div>
                     ))
@@ -561,15 +548,10 @@ const Dashboard = () => {
 
           {/* Sidebar - Create Job Form */}
           <div className="lg:col-span-1">
-            <div className="bg-gradient-to-br from-white to-purple-50 rounded-2xl shadow-xl p-8 sticky top-6 border border-purple-100">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 bg-gradient-to-br from-yellow-400 via-orange-500 to-pink-500 rounded-xl flex items-center justify-center text-white text-2xl shadow-lg">
-                  ✨
-                </div>
-                <h2 className="text-2xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">Post New Job</h2>
-              </div>
+            <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 sticky top-6">
+              <h2 className="text-xl font-bold text-gray-900 mb-5">Post New Job</h2>
               
-              <form onSubmit={handleCreateJob} className="space-y-5">
+              <form onSubmit={handleCreateJob} className="space-y-4">
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">
                     Job Title
@@ -579,7 +561,7 @@ const Dashboard = () => {
                     placeholder="e.g., Help with Math Assignment"
                     value={newJob.title}
                     onChange={(e) => setNewJob({...newJob, title: e.target.value})}
-                    className="w-full px-4 py-3 border-2 border-purple-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all bg-white"
+                    className="w-full px-4 py-2.5 border border-gray-300 rounded-xl focus:ring-2 focus:ring-black focus:border-transparent transition-all bg-white text-sm"
                     required
                   />
                 </div>
@@ -593,7 +575,7 @@ const Dashboard = () => {
                     placeholder="Describe what you need help with..."
                     value={newJob.description}
                     onChange={(e) => setNewJob({...newJob, description: e.target.value})}
-                    className="w-full px-4 py-3 border-2 border-purple-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all resize-none bg-white"
+                    className="w-full px-4 py-2.5 border border-gray-300 rounded-xl focus:ring-2 focus:ring-black focus:border-transparent transition-all resize-none bg-white text-sm"
                     rows="4"
                     required
                   />
@@ -608,16 +590,16 @@ const Dashboard = () => {
                     placeholder="e.g., $20 or Skill Exchange"
                     value={newJob.payment}
                     onChange={(e) => setNewJob({...newJob, payment: e.target.value})}
-                    className="w-full px-4 py-3 border-2 border-purple-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all bg-white"
+                    className="w-full px-4 py-2.5 border border-gray-300 rounded-xl focus:ring-2 focus:ring-black focus:border-transparent transition-all bg-white text-sm"
                     required
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full bg-gradient-to-r from-indigo-500 via-purple-600 to-pink-500 text-white py-4 rounded-xl font-bold hover:from-indigo-600 hover:via-purple-700 hover:to-pink-600 transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
+                  className="w-full bg-black text-white py-3 rounded-xl font-semibold hover:bg-gray-800 transition-all"
                 >
-                  Post Job 🚀
+                  Post Job
                 </button>
               </form>
             </div>
